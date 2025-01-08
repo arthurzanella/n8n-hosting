@@ -5,34 +5,17 @@ FROM n8nio/n8n
 USER root
 
 # Install Instantclient Basic Light Oracle and Dependencies
-# RUN apk --no-cache add libaio libnsl libc6-compat curl && \
-#     cd /tmp && \
-#     curl -o instantclient-basiclite.zip https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip -SL && \
-#     unzip instantclient-basiclite.zip && \
-#     mv instantclient*/ /usr/lib/instantclient && \
-#     rm instantclient-basiclite.zip && \
-#     ln -s /usr/lib/instantclient/libclntsh.so.19.1 /usr/lib/libclntsh.so && \
-#     ln -s /usr/lib/instantclient/libocci.so.19.1 /usr/lib/libocci.so && \
-#     ln -s /usr/lib/instantclient/libociicus.so /usr/lib/libociicus.so && \
-#     ln -s /usr/lib/instantclient/libnnz19.so /usr/lib/libnnz19.so && \
-#     ln -s /usr/lib/libnsl.so.2 /usr/lib/libnsl.so.1 && \
-#     ln -s /lib/libc.so.6 /usr/lib/libresolv.so.2 && \
-#     ln -s /lib64/ld-linux-x86-64.so.2 /usr/lib/ld-linux-x86-64.so.2
-
-# Copy the Oracle Instant Client zip file
-COPY instantclient-basiclite-linux.x64-12.2.0.1.0.zip /tmp/
-
-# Unzip, extract, and clean up the downloaded file
-RUN unzip /tmp/instantclient-basiclite-linux.x64-12.2.0.1.0.zip -d /opt/oracle && \
-    rm /tmp/instantclient-basiclite-linux.x64-12.2.0.1.0.zip && \
-    ln -s /opt/oracle/instantclient_12_2/*.so /usr/lib
-
-# Install dependencies and set up Oracle Instant Client
 RUN apk --no-cache add libaio libnsl libc6-compat curl && \
-    ln -s /opt/oracle/instantclient_12_2/libclntsh.so.12.1 /usr/lib/libclntsh.so && \
-    ln -s /opt/oracle/instantclient_12_2/libocci.so.12.1 /usr/lib/libocci.so && \
-    ln -s /opt/oracle/instantclient_12_2/libociicus.so /usr/lib/libociicus.so && \
-    ln -s /opt/oracle/instantclient_12_2/libnnz12.so /usr/lib/libnnz12.so && \
+    cd /tmp && \
+    curl -o instantclient-basiclite.zip https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip -SL && \
+    unzip instantclient-basiclite.zip && \
+    mv instantclient*/ /usr/lib/instantclient && \
+    rm instantclient-basiclite.zip && \
+    ln -s /usr/lib/instantclient/libclntsh.so.19.1 /usr/lib/libclntsh.so && \
+    ln -s /usr/lib/instantclient/libocci.so.19.1 /usr/lib/libocci.so && \
+    ln -s /usr/lib/instantclient/libociicus.so /usr/lib/libociicus.so && \
+    ln -s /usr/lib/instantclient/libnnz19.so /usr/lib/libnnz19.so && \
+    ln -s /usr/lib/libnsl.so.2 /usr/lib/libnsl.so.1 && \
     ln -s /lib/libc.so.6 /usr/lib/libresolv.so.2 && \
     ln -s /lib64/ld-linux-x86-64.so.2 /usr/lib/ld-linux-x86-64.so.2
 
