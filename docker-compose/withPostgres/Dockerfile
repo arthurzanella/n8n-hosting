@@ -24,10 +24,6 @@ ENV LD_LIBRARY_PATH /usr/lib/instantclient
 ENV TNS_ADMIN /usr/lib/instantclient
 ENV ORACLE_HOME /usr/lib/instantclient
 
-# Create and configure the sqlnet.ora file
-RUN echo "SQLNET.ALLOWED_LOGON_VERSION_SERVER=8" > /usr/lib/instantclient/sqlnet.ora && \
-    echo "SQLNET.ALLOWED_LOGON_VERSION_CLIENT=8" >> /usr/lib/instantclient/sqlnet.ora
-
 # Install the custom Oracle nodes globally
 RUN npm_config_user=root npm install -g n8n-nodes-oracle
 
