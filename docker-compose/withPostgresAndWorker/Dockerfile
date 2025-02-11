@@ -27,7 +27,5 @@ ENV ORACLE_HOME /usr/lib/instantclient
 # Install the custom Oracle nodes globally
 RUN npm_config_user=root npm install -g n8n-nodes-oracle
 
-RUN npm install -g n8n-nodes-document-generator
-
 # Define the environment variable for custom extensions
 ENV N8N_CUSTOM_EXTENSIONS="/usr/local/lib/node_modules/n8n-nodes-oracle"
